@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+background-color: white;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #c1cf16 !important;
+  border-color: #c1cf16 !important;
+  color: #000 !important;
+}
+.ant-checkbox .ant-checkbox-inner {
+  border-color: #c1cf16 !important;
+}
+.ant-checkbox-wrapper:hover .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #c1cf16 !important;
+  border-color: #c1cf16 !important;
+}
