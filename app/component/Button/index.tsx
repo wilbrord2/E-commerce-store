@@ -6,11 +6,13 @@ interface Props {
   color: string;
   link?: string;
   icon: ReactNode;
+  iconPosition?: string;
 }
 const ButtonComponent = (params: Props) => {
-  const { title, color, link, icon } = params;
+  const { title, color, link, icon, iconPosition } = params;
   return (
-    <Button htmlType="submit"
+    <Button
+      htmlType="submit"
       href={link}
       className={`${
         color === "default"
@@ -18,16 +20,19 @@ const ButtonComponent = (params: Props) => {
           : "white"
       } p-5 font-extrabold text-sm `}
     >
+      {iconPosition === "left" && icon}
       {title}
-      {icon}
+      {iconPosition !== "left" && icon}
     </Button>
   );
 };
-{/* <ButtonComponent
+{
+  /* <ButtonComponent
   title="Login"
   color="default"
   link="/"
   icon={<LoginOutlined />}
-/>; */}
+/>; */
+}
 
 export default ButtonComponent;
