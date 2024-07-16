@@ -17,6 +17,7 @@ import {
 } from "@ant-design/icons";
 import Link from "next/link";
 import { Dropdown, MenuProps, Space } from "antd";
+import { useAppContext } from "@/app/context/context";
 
 const items: MenuProps["items"] = [
   {
@@ -91,13 +92,39 @@ const items: MenuProps["items"] = [
 ];
 
 const Navbar = () => {
+  const { setOpenSearch } = useAppContext();
+  const { setOpenCart } = useAppContext();
   return (
     <>
       {/* mobile navbar */}
+      <section className=" lg:hidden w-full h-16 py-2 px-4 flex items-center justify-between border-b border-[#DBDBDB]">
+        <div>
+          <Link href={"/dashboard"}>
+            <div className="flex gap-2 cursor-pointer">
+              <Logo />
+              <Title size={"small"} />
+            </div>
+          </Link>
+        </div>
+        <div className="flex items-center rounded-lg  border-2 border-[#DBDBDB] font-bold">
+          <div className="border-r-2 py-3 px-4">
+            <UserOutlined className="text-[#DBDBDB]" />
+          </div>
+          <div>
+            <Dropdown menu={{ items }} trigger={["click"]} className="p-3">
+              <span onClick={(e) => e.preventDefault()}>
+                <Space>
+                  <DownOutlined className="text-textColorButton" />
+                </Space>
+              </span>
+            </Dropdown>
+          </div>
+        </div>
+      </section>
       {/* Desktop navbar */}
       <section className="max-lg:hidden w-full py-2 lg:px-4 xl:px-12 flex items-center justify-between border-b border-[#DBDBDB]">
         <div className="flex items-center justify-between gap-12">
-          <Link href={"/"}>
+          <Link href={"/dashboard"}>
             <div className="flex gap-2 cursor-pointer">
               <Logo />
               <Title size={"small"} />
@@ -122,8 +149,14 @@ const Navbar = () => {
           </div>
         </div>
         <div className="text-textSubTitlesColor flex items-center gap-8 ">
-          <SearchOutlined />
-          <div className="flex items-center gap-1">
+          <div onClick={() => setOpenSearch(true)} className="cursor-pointer">
+            <SearchOutlined />
+          </div>
+
+          <div
+            onClick={() => setOpenCart(true)}
+            className="flex items-center gap-1 cursor-pointer"
+          >
             <ShoppingCartOutlined />
             <span>My Cart </span>
             <span className="block w-1 h-1 bg-red-500 rounded-full"></span>

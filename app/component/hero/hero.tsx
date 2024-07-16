@@ -17,7 +17,7 @@ const HeroSection = ({ background }: { background?: string }) => {
         <span className="text-textDefaultGreen">Mark 8</span>
       </div>
       <div className="text-[#DBDBDB]"> 12,932 Products</div>
-      <div className="w-full sm:w-1/2">
+      <div className="w-full sm:w-2/3 md:w-1/2">
         <Input
           type="text"
           size="large"
