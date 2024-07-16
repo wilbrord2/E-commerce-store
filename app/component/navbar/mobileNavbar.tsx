@@ -14,7 +14,7 @@ const MobileNavbar = () => {
   const { openSearch, setOpenSearch, openCart, setOpenCart } = useAppContext();
   const [active, setActive] = useState("Home");
   return (
-    <section className="lg:hidden rounded-t-2xl z-50 fixed bottom-0 mt-10 bg-textTitlesColor font-bold w-full">
+    <section className="lg:hidden rounded-t-2xl z-40 sticky bottom-0 bg-textTitlesColor font-bold w-full">
       <div className="flex items-center p-4 justify-evenly gap-4">
         <div>
           <Link href={"/dashboard"}>
