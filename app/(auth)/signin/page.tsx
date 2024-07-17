@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Form, Input, notification } from "antd";
 import ButtonComponent from "@/app/component/Button";
+import Link from "next/link";
 
 interface SigninFormValues {
   email: string;
@@ -92,9 +93,11 @@ const Signin = () => {
                 />
               </Form.Item>
               <div className="mt-6 flex justify-between flex-wrap space-y-4 items-center">
-                <span className="underline text-textTitlesColor font-bold cursor-pointer hover:opacity-60">
-                  Forget Password ?
-                </span>
+                <Link href={"/forget-password"}>
+                  <span className="underline text-textTitlesColor font-bold cursor-pointer hover:opacity-60">
+                    Forget Password ?
+                  </span>
+                </Link>
                 <Form.Item>
                   <Button
                     href="/dashboard"

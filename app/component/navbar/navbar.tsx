@@ -97,7 +97,7 @@ const Navbar = () => {
   return (
     <>
       {/* mobile navbar */}
-      <section className=" lg:hidden w-full h-16 py-2 px-4 flex items-center justify-between border-b border-[#DBDBDB]">
+      <section className="sticky top-0 bg-white z-40 lg:hidden w-full h-16 py-2 px-4 flex items-center justify-between border-b border-[#DBDBDB]">
         <div>
           <Link href={"/dashboard"}>
             <div className="flex gap-2 cursor-pointer">
@@ -122,7 +122,7 @@ const Navbar = () => {
         </div>
       </section>
       {/* Desktop navbar */}
-      <section className="max-lg:hidden w-full py-2 lg:px-4 xl:px-12 flex items-center justify-between border-b border-[#DBDBDB]">
+      <section className="sticky top-0 z-50 bg-white max-lg:hidden w-full py-2 lg:px-4 xl:px-12 flex items-center justify-between border-b border-[#DBDBDB]">
         <div className="flex items-center justify-between gap-12">
           <Link href={"/dashboard"}>
             <div className="flex gap-2 cursor-pointer">
@@ -165,10 +165,12 @@ const Navbar = () => {
             <HeartOutlined className="pr-2" />
             <span>Saved </span>
           </div>
-          <div className="text-textTitlesColor p-3 rounded-lg border-2 border-[#DBDBDB] font-bold">
-            Open A Store
-            <ShopOutlined className="text-textDefaultGreen pl-2 font-bold" />
-          </div>
+          <Link href={"#openstore"}>
+            <div className="text-textTitlesColor p-3 rounded-lg border-2 border-[#DBDBDB] font-bold">
+              Open A Store
+              <ShopOutlined className="text-textDefaultGreen pl-2 font-bold" />
+            </div>
+          </Link>
           <div className="flex items-center rounded-lg  border-2 border-[#DBDBDB] font-bold">
             <div className="border-r-2 py-3 px-4">
               <UserOutlined className="text-[#DBDBDB]" />

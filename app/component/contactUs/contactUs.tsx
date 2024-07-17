@@ -5,7 +5,10 @@ import ButtonComponent from "../Button";
 
 const ContactUs = () => {
   return (
-    <section className="bg-[rgb(247,248,251)] rounded-md p-8 flex items-center max-md:flex-wrap gap-4 justify-between ">
+    <section
+      id="openstore"
+      className="bg-[rgb(247,248,251)] rounded-md p-8 flex items-center max-md:flex-wrap gap-4 justify-between "
+    >
       <div className="font-extrabold text-2xl">
         <span className="text-textDefaultGreen pr-2">Open</span>
         <span className="text-textTitlesColor">your Store</span>

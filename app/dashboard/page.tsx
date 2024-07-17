@@ -6,6 +6,10 @@ export default function Dashboard() {
     <main className="flex flex-col gap-4 pt-4 sm:gap-8 sm:px-12 sm:pt-8">
       <HeroSection background={"dark"} />
       <ContactUs />
+      <HeroSection background={"dark"} />
+      <ContactUs />
+      <HeroSection background={"dark"} />
+      <ContactUs />
     </main>
   );
 }
