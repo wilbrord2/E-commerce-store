@@ -10,10 +10,6 @@ export default function Dashboard() {
       <HeroSection background={"dark"} />
       <RecentProduct/>
       <ContactUs />
-      <HeroSection background={"dark"} />
-      <ContactUs />
-      <HeroSection background={"dark"} />
-      <ContactUs />
     </main>
   );
 }
