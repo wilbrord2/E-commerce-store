@@ -9,26 +9,24 @@ import {
 } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, notification } from "antd";
 import ButtonComponent from "@/app/component/Button";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { SignupUser } from "@/lib/features/authSlice/authSlice";
 
 interface SignupFormValues {
-  firstname: string;
-  secondname: string;
   email: string;
-  phone: string;
-  confirmpassword: string;
   password: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
 }
 const Signup = () => {
   const [checked, setChecked] = useState(false);
   const [form] = Form.useForm();
+  const dispatch = useAppDispatch();
+  const signupinfo = useAppSelector((state) => state.auth);
 
   const onFinish = (values: SignupFormValues) => {
-    notification.success({
-      message: "Account created Successfully",
-      description: "Go on and login",
-      placement: "topRight",
-    });
-    console.log("Success:", values);
+    dispatch(SignupUser(values));
   };
 
   const onFinishFailed = () => {
@@ -45,9 +43,8 @@ const Signup = () => {
     }
     return Promise.reject(new Error("Passwords do not match!"));
   };
-
   return (
-    <section className="bg-bgDefaultColor w-full h-full lg:min-h-[calc(100vh)] py-8 flex items-center justify-center">
+    <section className="bg-bgDefaultColor w-full h-full min-h-[calc(100vh)] py-8 flex items-center justify-center">
       <div className="w-full flex flex-col gap-4 items-center justify-center">
         <div className="w-[90%] md:w-3/4 lg:w-2/3 xl:w-1/2 max-w-screen-lg rounded-2xl bg-white flex flex-row">
           <div className="w-full p-8 flex flex-col">
@@ -67,7 +64,7 @@ const Signup = () => {
                 <div className="w-full flex flex-row items-center gap-4 mb-2 max-sm:flex-wrap ">
                   <Form.Item
                     label="First Name"
-                    name="firstname"
+                    name="firstName"
                     className="mb-2 w-full sm:w-1/2"
                     rules={[
                       {
@@ -88,7 +85,7 @@ const Signup = () => {
                   </Form.Item>
                   <Form.Item
                     label="Second Name"
-                    name="secondname"
+                    name="lastName"
                     className="mb-2 w-full sm:w-1/2"
                     rules={[
                       {
@@ -130,7 +127,7 @@ const Signup = () => {
                   </Form.Item>
                   <Form.Item
                     label="Phone number"
-                    name="phone"
+                    name="phoneNumber"
                     className="mb-2 w-full sm:w-1/2"
                     rules={[
                       {
@@ -222,6 +219,7 @@ const Signup = () => {
                 </div>
                 <Form.Item>
                   <Button
+                    loading={signupinfo.signupLoading}
                     htmlType="submit"
                     className="bg-textDefaultGreen hover:bg-textDefaultGreen hover:text-black rounded-md text-black white p-5 font-extrabold text-sm"
                   >

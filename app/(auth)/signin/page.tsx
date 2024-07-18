@@ -10,27 +10,32 @@ import {
 } from "@ant-design/icons";
 import { Button, Form, Input, notification } from "antd";
 import ButtonComponent from "@/app/component/Button";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import {SigninUser } from "@/lib/features/authSlice/authSlice";
 
-interface SigninFormValues {
+interface SigninFormData {
   email: string;
   password: string;
 }
 
 const Signin = () => {
-  const onFinish = (values: SigninFormValues) => {
-    console.log("Success:", values);
+  const dispatch = useAppDispatch()
+  const loginInfo= useAppSelector(state=> state.auth)
+
+  const onFinish = (values: SigninFormData) => {
+    dispatch(SigninUser(values))
   };
 
   const onFinishFailed = () => {
     notification.error({
       message: "Submission Failed",
-      description: "Please check the form for errors and try again.",
+      description: "Please check the form errors and try again !!",
       placement: "topRight",
     });
   };
 
   return (
-    <section className="bg-bgDefaultColor w-full py-8 lg:min-h-[calc(100vh)] flex items-center justify-center">
+    <section className="bg-bgDefaultColor w-full py-8 min-h-[calc(100vh)] flex items-center justify-center">
       <div className="w-full flex flex-col gap-4 items-center justify-center">
         <div className="w-[90%] md:w-3/4 lg:w-2/3 xl:w-1/2 rounded-2xl bg-white flex flex-row">
           <div className="max-sm:hidden w-1/2 rounded-s-2xl bg-[#F4F5F6] flex flex-col justify-between p-8">
@@ -97,7 +102,7 @@ const Signin = () => {
                 </span>
                 <Form.Item>
                   <Button
-                    href="/dashboard"
+                  loading={loginInfo.signinLoading}
                     htmlType="submit"
                     className="bg-textDefaultGreen hover:bg-textDefaultGreen hover:text-black rounded-md text-black white p-5 font-extrabold text-sm"
                   >

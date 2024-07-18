@@ -23,3 +23,8 @@ background-color: white;
   background-color: #c1cf16 !important;
   border-color: #c1cf16 !important;
 }
+.ant-btn:hover .ant-btn:focus{
+  background-color: #c1cf16 !important;
+  border-color: #c1cf16 !important;
+  color: #000 !important;
+}
