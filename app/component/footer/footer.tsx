@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <section className="lg:sticky w-full bg-[#F4F5F6] mt-14 lg:mt-8 px-12 py-8 flex gap-4 justify-between items-center max-sm:flex-col">
+    <section className="lg:sticky w-full bg-[#F4F5F6] mt-8 px-12 py-8 flex gap-4 justify-between items-center max-sm:flex-col">
       <Link href={"/dashboard"}>
         <div className="flex gap-2 cursor-pointer">
           <Logo />

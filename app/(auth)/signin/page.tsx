@@ -12,6 +12,7 @@ import { Button, Form, Input, notification } from "antd";
 import ButtonComponent from "@/app/component/Button";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {SigninUser } from "@/lib/features/authSlice/authSlice";
+import Link from "next/link";
 
 interface SigninFormData {
   email: string;
@@ -97,9 +98,11 @@ const Signin = () => {
                 />
               </Form.Item>
               <div className="mt-6 flex justify-between flex-wrap space-y-4 items-center">
-                <span className="underline text-textTitlesColor font-bold cursor-pointer hover:opacity-60">
-                  Forget Password ?
-                </span>
+                <Link href={"/forget-password"}>
+                  <span className="underline text-textTitlesColor font-bold cursor-pointer hover:opacity-60">
+                    Forget Password ?
+                  </span>
+                </Link>
                 <Form.Item>
                   <Button
                   loading={loginInfo.signinLoading}

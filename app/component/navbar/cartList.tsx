@@ -43,11 +43,11 @@ const CartList = () => {
     <>
       {openCart && (
         <div
-          className="absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-40 z-10 w-full flex items-center justify-end"
+          className="absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-40 z-50 w-full h-full flex justify-end"
           onClick={handleBlur}
         >
           <div
-            className="w-full md:w-2/3 lg:w-1/2 2xl:w-1/3 flex flex-col  justify-between h-full gap-2 bg-white border animate-slideInRight"
+            className="w-full md:w-2/3 lg:w-1/2 2xl:w-1/3 flex flex-col justify-between gap-2 bg-white border animate-slideInRight"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="">
