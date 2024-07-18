@@ -1,3 +1,4 @@
+"use server";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button } from "antd";
 import Image from "next/image";

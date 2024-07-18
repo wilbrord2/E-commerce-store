@@ -7,6 +7,7 @@ import {
   ShopOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -87,4 +88,4 @@ const MobileNavbar = () => {
   );
 };
 
-export default MobileNavbar;
+export default dynamic(() => Promise.resolve(MobileNavbar), { ssr: false });

@@ -15,6 +15,7 @@ export type ProductReqType = {
 };
 
 export type ProductListType = {
+    error: string;
     status: number,
     message: string,
     data: {

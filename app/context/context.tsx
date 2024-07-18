@@ -13,6 +13,7 @@ const AppContext = createContext<ContextValue>({} as ContextValue);
 function ContextProvider({ children }: PropsWithChildren) {
   const [openSearch, setOpenSearch] = useState(false);
   const [openCart, setOpenCart] = useState(false);
+  
 
   return (
     <AppContext.Provider

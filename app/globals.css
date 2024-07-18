@@ -28,3 +28,6 @@ background-color: white;
   border-color: #c1cf16 !important;
   color: #000 !important;
 }
+.no-scroll{
+  overflow: hidden;
+}
