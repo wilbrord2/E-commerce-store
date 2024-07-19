@@ -12,9 +12,9 @@ export default function DashboardLayout({
 }>) {
   return (
     <ContextProvider>
-      <div className="">
+      <div>
         <SearchBox />
-        <CartList/>
+        <CartList />
         <Navbar />
         {children}
         <Footer />
