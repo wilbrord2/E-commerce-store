@@ -1,4 +1,3 @@
-"use client"
 import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 import { Icon } from "@iconify/react";

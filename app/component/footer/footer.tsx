@@ -8,10 +8,12 @@ import {
   YoutubeOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 const Footer = () => {
   return (
-    <section className="w-full bg-[#F4F5F6] mt-8 px-12 py-8 flex gap-4 justify-between items-center max-sm:flex-col">
+    <section className=" w-full bg-[#F4F5F6]">
+     <div className=" max-w-[2500px] mx-auto lg:sticky w-full bg-[#F4F5F6] mt-8 px-12 py-8 flex gap-4 justify-between items-center max-sm:flex-col">
       <Link href={"/dashboard"}>
         <div className="flex gap-2 cursor-pointer">
           <Logo />
@@ -32,8 +34,10 @@ const Footer = () => {
         <YoutubeOutlined className="cursor-pointer" />
         <LinkedinOutlined className="cursor-pointer" />
       </div>
+      </div>
     </section>
   );
 };
 
-export default Footer;
+export default dynamic(() => Promise.resolve(Footer), { ssr: false });
+

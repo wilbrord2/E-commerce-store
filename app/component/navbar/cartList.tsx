@@ -37,20 +37,21 @@ const CartList = () => {
       name: "Product 3",
       price: "1,000",
     },
+ 
   ];
 
   return (
     <>
       {openCart && (
         <div
-          className="absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-40 z-50 w-full h-full flex justify-end"
+          className="fixed top-0 left-0 bg-black bg-opacity-40 z-50 w-full h-auto flex justify-end"
           onClick={handleBlur}
         >
           <div
-            className="w-full md:w-2/3 lg:w-1/2 2xl:w-1/3 flex flex-col justify-between gap-2 bg-white border animate-slideInRight"
+            className=" w-full md:w-2/3 lg:w-1/2 2xl:w-1/3 flex flex-col h-screen justify-between gap-2 bg-white border animate-slideInRight"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="">
+            <div className="overflow-y-scroll">
               <div className="flex items-center justify-between gap-2 p-4">
                 <div>
                   <span
@@ -88,7 +89,7 @@ const CartList = () => {
                 {cartList.map((item) => (
                   <div
                     key={item.id}
-                    className="flex items-center justify-between mb-4 p-4 border rounded-md"
+                    className="w-full flex items-center justify-between flex-wrap gap-4 mb-4 p-4 border rounded-md"
                   >
                     <div className="flex items-center gap-3">
                       <span className="p-2">{item.id}</span>
@@ -100,7 +101,7 @@ const CartList = () => {
                         <span>{item.price.toLocaleString()} RWF</span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 ">
+                    <div className=" max-sm:w-full flex items-center max-sm:justify-center gap-2 ">
                       <Button
                         disabled={totalNumber <= 1 ? true : false}
                         onClick={() => setTotalNumber(totalNumber - 1)}

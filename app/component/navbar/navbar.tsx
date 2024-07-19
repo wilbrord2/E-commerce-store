@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Logo from "../logo";
 import Title from "../logo/title";
 import {
@@ -9,7 +9,6 @@ import {
   HeartOutlined,
   HomeOutlined,
   LogoutOutlined,
-  SearchOutlined,
   SettingOutlined,
   ShopOutlined,
   ShoppingCartOutlined,
@@ -17,7 +16,9 @@ import {
 } from "@ant-design/icons";
 import Link from "next/link";
 import { Dropdown, MenuProps, Space } from "antd";
-import { useAppContext } from "@/app/context/context";
+import dynamic from "next/dynamic";
+import SearchIcon from "./searchIcon";
+import CartIcon from "./cartIcon";
 
 const items: MenuProps["items"] = [
   {
@@ -80,7 +81,6 @@ const items: MenuProps["items"] = [
   {
     label: (
       <Link href={"/signin"}>
-        {" "}
         <div className="px-6 py-3 flex gap-4">
           <LogoutOutlined />
           <span className="text-textSubTitlesColor text-sm">Logout</span>
@@ -92,12 +92,10 @@ const items: MenuProps["items"] = [
 ];
 
 const Navbar = () => {
-  const { setOpenSearch } = useAppContext();
-  const { setOpenCart } = useAppContext();
   return (
     <>
       {/* mobile navbar */}
-      <section className="sticky top-0 bg-white z-40 lg:hidden w-full h-16 py-2 px-4 flex items-center justify-between border-b border-[#DBDBDB]">
+      <section className="sticky top-0 bg-white z-30 lg:hidden w-full h-16 py-2 px-4 flex items-center justify-between border-b border-[#DBDBDB]">
         <div>
           <Link href={"/dashboard"}>
             <div className="flex gap-2 cursor-pointer">
@@ -121,68 +119,61 @@ const Navbar = () => {
           </div>
         </div>
       </section>
+      
       {/* Desktop navbar */}
-      <section className="sticky top-0 z-50 bg-white max-lg:hidden w-full py-2 lg:px-4 xl:px-12 flex items-center justify-between border-b border-[#DBDBDB]">
-        <div className="flex items-center justify-between gap-12">
-          <Link href={"/dashboard"}>
-            <div className="flex gap-2 cursor-pointer">
-              <Logo />
-              <Title size={"small"} />
-            </div>
-          </Link>
-          <div className="flex justify-between gap-8">
-            <Link href={"/"}>
-              {" "}
-              <span className="font-bold text-textTitlesColor">
+      <section className=" w-full border-b border-[#DBDBDB]">
+        <div className="max-w-[2500px] mx-auto sticky top-0 z-30 bg-white max-lg:hidden w-full py-2 lg:px-4 xl:px-12 flex items-center justify-between ">
+          <div className="flex items-center justify-between gap-12">
+            <Link href={"/dashboard"}>
+              <div className="flex gap-2 cursor-pointer">
+                <Logo />
+                <Title size={"small"} />
+              </div>
+            </Link>
+            <div className="flex justify-between gap-8">
+              <Link href={"/dashboard"}>
                 {" "}
-                <HomeOutlined className="text-textDefaultGreen pr-2 font-bold" />
-                Home
-              </span>
-            </Link>
-            <Link href={"/stores"}>
-              {" "}
-              <span className="text-textSubTitlesColor">
-                <ShopOutlined className="text-textSubTitlesColor pr-2 font-bold" />
-                Stores
-              </span>
-            </Link>
-          </div>
-        </div>
-        <div className="text-textSubTitlesColor flex items-center gap-8 ">
-          <div onClick={() => setOpenSearch(true)} className="cursor-pointer">
-            <SearchOutlined />
-          </div>
-
-          <div
-            onClick={() => setOpenCart(true)}
-            className="flex items-center gap-1 cursor-pointer"
-          >
-            <ShoppingCartOutlined />
-            <span>My Cart </span>
-            <span className="block w-1 h-1 bg-red-500 rounded-full"></span>
-          </div>
-          <div className="flex items-center gap-1">
-            <HeartOutlined className="pr-2" />
-            <span>Saved </span>
-          </div>
-          <Link href={"#openstore"}>
-            <div className="text-textTitlesColor p-3 rounded-lg border-2 border-[#DBDBDB] font-bold">
-              Open A Store
-              <ShopOutlined className="text-textDefaultGreen pl-2 font-bold" />
-            </div>
-          </Link>
-          <div className="flex items-center rounded-lg  border-2 border-[#DBDBDB] font-bold">
-            <div className="border-r-2 py-3 px-4">
-              <UserOutlined className="text-[#DBDBDB]" />
-            </div>
-            <div>
-              <Dropdown menu={{ items }} trigger={["click"]} className="p-3">
-                <span onClick={(e) => e.preventDefault()}>
-                  <Space>
-                    <DownOutlined className="text-textColorButton" />
-                  </Space>
+                <span className="font-bold text-textTitlesColor">
+                  {" "}
+                  <HomeOutlined className="text-textDefaultGreen pr-2 font-bold" />
+                  Home
                 </span>
-              </Dropdown>
+              </Link>
+              <Link href={"/stores"}>
+                {" "}
+                <span className="text-textSubTitlesColor">
+                  <ShopOutlined className="text-textSubTitlesColor pr-2 font-bold" />
+                  Stores
+                </span>
+              </Link>
+            </div>
+          </div>
+          <div className="text-textSubTitlesColor flex items-center gap-8 ">
+            <SearchIcon />
+            <CartIcon />
+            <div className="flex items-center gap-1">
+              <HeartOutlined className="pr-2" />
+              <span>Saved </span>
+            </div>
+            <Link href={"#openstore"}>
+              <div className="text-textTitlesColor p-3 rounded-lg border-2 border-[#DBDBDB] font-bold">
+                Open A Store
+                <ShopOutlined className="text-textDefaultGreen pl-2 font-bold" />
+              </div>
+            </Link>
+            <div className="flex items-center rounded-lg  border-2 border-[#DBDBDB] font-bold">
+              <div className="border-r-2 py-3 px-4">
+                <UserOutlined className="text-[#DBDBDB]" />
+              </div>
+              <div>
+                <Dropdown menu={{ items }} trigger={["click"]} className="p-3">
+                  <span onClick={(e) => e.preventDefault()}>
+                    <Space>
+                      <DownOutlined className="text-textColorButton" />
+                    </Space>
+                  </span>
+                </Dropdown>
+              </div>
             </div>
           </div>
         </div>
@@ -191,4 +182,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default dynamic(() => Promise.resolve(Navbar), { ssr: false });
