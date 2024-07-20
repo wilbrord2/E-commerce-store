@@ -1,5 +1,6 @@
 export type StoresType = {
   status: number;
+  statusCode:number;
   message: string;
   data: {
     stores: Store[];

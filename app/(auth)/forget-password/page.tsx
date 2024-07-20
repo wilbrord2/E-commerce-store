@@ -9,7 +9,6 @@ interface ForgetFormValues {
 }
 const ForgetPassword = () => {
   const onFinish = (values: ForgetFormValues) => {
-    console.log("Success:", values);
   };
 
   const onFinishFailed = () => {

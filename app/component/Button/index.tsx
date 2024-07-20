@@ -16,7 +16,7 @@ const ButtonComponent = (params: Props) => {
       href={link}
       className={`${
         color === "default"
-          ? "bg-textDefaultGreen hover:bg-textDefaultGreen border-none rounded-md text-black"
+          ? "bg-textDefaultGreen hover:bg-textDefaultGreen border-none rounded-lg text-textTitlesColor"
           : "white"
       } p-5 font-extrabold text-sm `}
     >
@@ -26,13 +26,5 @@ const ButtonComponent = (params: Props) => {
     </Button>
   );
 };
-{
-  /* <ButtonComponent
-  title="Login"
-  color="default"
-  link="/"
-  icon={<LoginOutlined />}
-/>; */
-}
 
 export default ButtonComponent;

@@ -17,6 +17,7 @@ export type ProductReqType = {
 export type ProductListType = {
     error: string;
     status: number,
+    statusCode:number;
     message: string,
     data: {
         products: ProductType[],

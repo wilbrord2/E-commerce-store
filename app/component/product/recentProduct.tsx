@@ -23,7 +23,7 @@ export const getServerSideProps = async () => {
 
 const RecentProduct = async () => {
   const { product, error } = await getServerSideProps();
-  if (product.status === 401 || error) {
+  if (product.statusCode === 401 || error) {
     redirect("/signin");
   }
 
@@ -32,7 +32,7 @@ const RecentProduct = async () => {
       <div className="w-full flex items-center justify-between mb-8">
         <span className="font-bold text-textPrimaryColor">
           {" "}
-          Recent Products ({product.data.pagination.totalRecords || 0})
+          Recent Products ({product.data?.pagination.totalRecords || 0})
         </span>
         <span className="inline-flex gap-2">
           <Button>
@@ -56,9 +56,10 @@ const RecentProduct = async () => {
       <div className="w-full flex items-start gap-2">
         <div>
           <div className="w-full mb-4 flex items-center justify-center md:justify-evenly gap-4 flex-wrap">
-            {product.data.products.map((product) => (
+            {product.data?.products.map((product) => (
               <div key={product.id}>
                 <SingleProduct
+                  productId={product.id}
                   image={product.thumbnail[1]}
                   price={product.unitPrice}
                   name={product.name}
@@ -66,11 +67,11 @@ const RecentProduct = async () => {
               </div>
             ))}
           </div>
-          <div className="w-ful mx-auto">
+          <div className="w-full text-center">
             <ButtonComponent
               title="Load more"
               iconPosition={"left"}
-              icon={<DownOutlined className="text-text" />}
+              icon={<DownOutlined className="text-textDefaultGreen" />}
               color={""}
             />
           </div>

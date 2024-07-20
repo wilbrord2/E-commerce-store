@@ -119,10 +119,10 @@ const Navbar = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Desktop navbar */}
-      <section className=" w-full border-b border-[#DBDBDB]">
-        <div className="max-w-[2500px] mx-auto sticky top-0 z-30 bg-white max-lg:hidden w-full py-2 lg:px-4 xl:px-12 flex items-center justify-between ">
+      <section className="sticky z-30 top-0 w-full border-b border-[#DBDBDB]">
+        <div className="max-w-[2500px] mx-auto   bg-white max-lg:hidden w-full py-2 lg:px-4 xl:px-12 flex items-center justify-between ">
           <div className="flex items-center justify-between gap-12">
             <Link href={"/dashboard"}>
               <div className="flex gap-2 cursor-pointer">
@@ -139,7 +139,7 @@ const Navbar = () => {
                   Home
                 </span>
               </Link>
-              <Link href={"/stores"}>
+              <Link href={"/dashboard/store"}>
                 {" "}
                 <span className="text-textSubTitlesColor">
                   <ShopOutlined className="text-textSubTitlesColor pr-2 font-bold" />

@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 import { getAllStores } from "./action";
 import SingleStore from "../store/recentStore";
+import Link from "next/link";
 
 export const getServerSideProps = async () => {
   try {
@@ -14,13 +15,13 @@ export const getServerSideProps = async () => {
       error: null,
     };
   } catch (error: any) {
-    throw new error
+    throw new error();
   }
 };
 
 const StoreList = async () => {
   const { stores } = await getServerSideProps();
-  if (stores.status === 401 ) {
+  if (stores.statusCode === 401) {
     redirect("/signin");
   }
   return (
@@ -32,12 +33,14 @@ const StoreList = async () => {
             Top 10 Stores
           </span>
         </span>
-        <Icon
-          icon="ci:external-link"
-          width="20"
-          height="20"
-          style={{ color: "#141c24" }}
-        />
+        <Link href={"/dashboard/store"}>
+          <Icon
+            icon="ci:external-link"
+            width="20"
+            height="20"
+            style={{ color: "#141c24" }}
+          />
+        </Link>
       </div>
       <div className="w-full py-4 px-3 bg-[#F7F8FB]">
         <Input
@@ -58,7 +61,7 @@ const StoreList = async () => {
       </div>
       <div>
         <div className="flex flex-col gap-4 p-4">
-          {stores.data.stores.map((store) => (
+          {stores.data?.stores.map((store) => (
             <div key={store.id}>
               <SingleStore
                 image={store.image}

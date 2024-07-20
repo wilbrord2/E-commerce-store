@@ -31,7 +31,7 @@ const MobileNavbar = () => {
           </Link>
         </div>
         <div>
-          <Link href={"/stores"}>
+          <Link href={"/dashboard/store"}>
             {" "}
             <span
               onClick={() => setActive("Stores")}

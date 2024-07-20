@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 
-const FilterOptions = () => {
+const FilterOptions = ({store}:{store:boolean}) => {
   const [active, setActive] = useState("All");
   return (
     <div className="flex gap-4 items-center justify-center max-sm:flex-wrap">
@@ -9,7 +9,7 @@ const FilterOptions = () => {
         onClick={() => setActive("All")}
         className={`${
           active === "All"
-            ? "border-white text-white font-bold"
+            ? store?"border-black text-textPrimaryColor": "border-white text-white font-bold"
             : " border-[#79878F] text-[#79878F]"
         } border py-2 px-4 rounded-2xl text-xs font-medium cursor-pointer`}
       >
@@ -19,7 +19,7 @@ const FilterOptions = () => {
         onClick={() => setActive("Vectors")}
         className={`${
           active === "Vectors"
-            ? "border-white text-white font-bold"
+            ? store?"border-black text-textPrimaryColor": "border-white text-white font-bold"
             : " border-[#79878F] text-[#79878F]"
         } border py-2 px-4 rounded-2xl text-xs font-medium cursor-pointer`}
       >
@@ -29,7 +29,7 @@ const FilterOptions = () => {
         onClick={() => setActive("Icons")}
         className={`${
           active === "Icons"
-            ? "border-white text-white font-bold"
+            ? store?"border-black text-textPrimaryColor": "border-white text-white font-bold"
             : " border-[#79878F] text-[#79878F]"
         } border py-2 px-4 rounded-2xl text-xs font-medium cursor-pointer`}
       >
@@ -39,7 +39,7 @@ const FilterOptions = () => {
         onClick={() => setActive("Backgrounds")}
         className={`${
           active === "Backgrounds"
-            ? "border-white text-white font-bold"
+            ? store?"border-black text-textPrimaryColor": "border-white text-white font-bold"
             : " border-[#79878F] text-[#79878F]"
         } border py-2 px-4 rounded-2xl text-xs font-medium cursor-pointer`}
       >
