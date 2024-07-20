@@ -1,4 +1,6 @@
 "use client";
+import { useAppContext } from "@/app/context/context";
+import { MysavedProduct } from "@/app/helpers/arrays";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button } from "antd";
@@ -14,8 +16,9 @@ interface props {
 }
 
 const SingleProduct = (params: props) => {
-  const [saved, setSaved] = useState(false);
   const { image, name, price, removeCart, productId } = params;
+  const [saved, setSaved] = useState(false);
+  const { savedProduct, setSavedProduct } = useAppContext();
   return (
     <div className="flex flex-col rounded-2xl border">
       <div
@@ -51,7 +54,19 @@ const SingleProduct = (params: props) => {
             </Button>
           )}
           <Button
-            onClick={() => setSaved((prev) => !prev)}
+            onClick={() => {
+              setSaved((prev) => !prev);
+              setSavedProduct(
+                {
+                  name: name,
+                  image: image,
+                  price: price,
+                  saved: saved,
+                  id: productId,
+                },
+              );
+              MysavedProduct.push(savedProduct)
+            }}
             icon={
               saved ? (
                 <HeartFilled className="text-textDefaultGreen" />

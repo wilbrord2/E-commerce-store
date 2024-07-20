@@ -151,10 +151,12 @@ const Navbar = () => {
           <div className="text-textSubTitlesColor flex items-center gap-8 ">
             <SearchIcon />
             <CartIcon />
+            <Link href={"/dashboard/saved"}>
             <div className="flex items-center gap-1">
               <HeartOutlined className="pr-2" />
               <span>Saved </span>
             </div>
+            </Link>
             <Link href={"#openstore"}>
               <div className="text-textTitlesColor p-3 rounded-lg border-2 border-[#DBDBDB] font-bold">
                 Open A Store

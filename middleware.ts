@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 
 export default function middleware(req:NextRequest) {
   const token = cookies().get('accessToken');
-  const protectedRoutes=['/dashboard']
+  const protectedRoutes=['/dasboard']
 
   if (!token && protectedRoutes.includes(req.nextUrl.pathname)) {
       return NextResponse.redirect(new URL('/signin', req.nextUrl));

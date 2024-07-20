@@ -59,6 +59,7 @@ const MobileNavbar = () => {
           <ShoppingCartOutlined className="pr-2" />
           <span className="text-nowrap">My Cart </span>
         </div>
+        <Link href={"/dashboard/saved"}>
         <div
           onClick={() => setActive("Saved")}
           className={`${
@@ -68,6 +69,7 @@ const MobileNavbar = () => {
           <HeartOutlined className="pr-2" />
           <span>Saved </span>
         </div>
+        </Link>
         <div
           onClick={() => {
             setActive("search");
