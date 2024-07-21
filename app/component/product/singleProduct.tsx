@@ -5,6 +5,7 @@ import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button } from "antd";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 
 interface props {
@@ -20,7 +21,8 @@ const SingleProduct = (params: props) => {
   const [saved, setSaved] = useState(false);
   const { savedProduct, setSavedProduct } = useAppContext();
   return (
-    <div className="flex flex-col rounded-2xl border">
+    <Link href={`/dashboard/product/${productId}`}>
+    <div className="flex flex-col rounded-2xl border cursor-pointer">
       <div
         className={
           removeCart
@@ -78,6 +80,7 @@ const SingleProduct = (params: props) => {
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 

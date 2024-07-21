@@ -5,7 +5,7 @@ import React from "react";
 
 const SavedProduct = () => {
   const array = [1, 2, 3, 4, 5, 6];
-  console.log(MysavedProduct)
+  // console.log(MysavedProduct)
   return (
     <section className="max-w-[2500px] w-full mx-auto flex flex-col gap-4 pt-4 sm:gap-8 sm:px-12 sm:pt-8">
       <div className="bg-[#F7F8FB] flex flex-col items-center justify-center gap-4 p-8 rounded-xl">
@@ -17,7 +17,7 @@ const SavedProduct = () => {
           <div key={item}>
             <SingleProduct
               removeCart={false}
-              productId={"123"}
+              productId={"ecc5384a-bf4e-4121-860b-2416cedcff0d"}
               image={"/public/assets/bg-image-auth.png"}
               price={16000}
               name={"Product 1"}

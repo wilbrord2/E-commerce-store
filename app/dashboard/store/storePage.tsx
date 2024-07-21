@@ -107,21 +107,21 @@ const StoresPage = ({ stores }: { stores: StoresType }) => {
             <div className="w-full flex gap-3 items-center max-md:flex-wrap max-sm:justify-center lg:justify-end">
               <SingleProduct
                 removeCart
-                productId={store.id}
+                productId={"ecc5384a-bf4e-4121-860b-2416cedcff0d"}
                 image={store.image}
                 price={16000}
                 name={"Product 1"}
               />
               <SingleProduct
                 removeCart
-                productId={store.id}
+                productId={"ecc5384a-bf4e-4121-860b-2416cedcff0d"}
                 image={store.image}
                 price={16000}
                 name={"Product 2"}
               />
               <SingleProduct
                 removeCart
-                productId={store.id}
+                productId={"ecc5384a-bf4e-4121-860b-2416cedcff0d"}
                 image={store.image}
                 price={16000}
                 name={"Product 2"}
