@@ -79,7 +79,12 @@ const SingleProductDetails = async ({ params: { id } }: props) => {
                 {"   "}({product.data.reviews.length} Reviews)
               </span>
             </div>
-            <CartButtons />
+            <CartButtons
+              name={product.data.name}
+              image={product.data.thumbnail[1]}
+              price={product.data.unitPrice}
+              productId={product.data.id}
+            />
           </div>
           <div className="px-8 py-4 flex items-center justify-between max-lg:flex-wrap gap-2">
             <span className="inline-flex gap-2 items-center text-textTitlesColor font-bold">

@@ -1,12 +1,20 @@
 "use client";
 import ButtonComponent from "@/app/component/Button";
 import { useAppContext } from "@/app/context/context";
+import { cartList } from "@/app/helpers/arrays";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button } from "antd";
 import React, { useState } from "react";
 
-const CartButtons = () => {
+interface props {
+  name: string;
+  image: string;
+  price: number;
+  removeCart?: boolean;
+  productId: string;
+}
+const CartButtons = (params: props) => {
   const [totalNumber, setTotalNumber] = useState(1);
   const { setaAddedToCart } = useAppContext();
   return (
@@ -25,7 +33,17 @@ const CartButtons = () => {
         className="border rounded-md cursor-pointer"
         icon={<PlusOutlined />}
       ></Button>
-      <div onClick={() => setaAddedToCart(true)}>
+      <div
+        onClick={() => {
+          setaAddedToCart(true);
+          cartList.push({
+            name:params.name,
+            image:params.image,
+            price:params.price,
+            id:params.productId,
+          });
+        }}
+      >
         <ButtonComponent
           title={"Add To Cart"}
           color={"default"}

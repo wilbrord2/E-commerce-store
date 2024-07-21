@@ -20,7 +20,6 @@ const SingleProduct = (params: props) => {
   const { image, name, price, removeCart, productId } = params;
   const [saved, setSaved] = useState(false);
   const { setaAddedToCart } = useAppContext();
- console.log(savedProduct)
   return (
     <div className="flex flex-col rounded-2xl border cursor-pointer">
       <Link href={`/dashboard/product/${productId}`}>

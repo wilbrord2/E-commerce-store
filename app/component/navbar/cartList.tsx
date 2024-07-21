@@ -112,6 +112,7 @@ const CartList = () => {
                         icon={<PlusOutlined />}
                       ></Button>
                       <Button
+                      onClick={()=> {cartList.pop()}}
                         className="border rounded-md cursor-pointer"
                         icon={<DeleteOutlined className="text-red-600" />}
                       ></Button>
