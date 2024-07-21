@@ -8,7 +8,7 @@ interface props {
 const ImageContainer = ({ images }: props) => {
   const [selectedImage, setSelectedImage] = useState(0);
   return (
-    <div className="w-[40%] flex flex-col border rounded-2xl">
+    <div className="w-full lg:w-[40%] 2xl:w-1/2 flex flex-col border rounded-2xl">
       <div className="w-full h-[400px] relative overflow-hidden">
         <Image
           src={images[selectedImage]}

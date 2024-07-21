@@ -7,6 +7,8 @@ interface ContextValue {
   setOpenSearch: (arg: boolean) => void;
   openCart: boolean;
   setOpenCart: (arg: boolean) => void;
+  addedToCart: boolean;
+  setaAddedToCart: (arg: boolean) => void;
   savedProduct: SavedProductType;
   setSavedProduct: (arg: SavedProductType) => void;
 }
@@ -16,6 +18,7 @@ const AppContext = createContext<ContextValue>({} as ContextValue);
 function ContextProvider({ children }: PropsWithChildren) {
   const [openSearch, setOpenSearch] = useState(false);
   const [openCart, setOpenCart] = useState(false);
+  const [addedToCart, setaAddedToCart] = useState(false);
   const [savedProduct, setSavedProduct] = useState<SavedProductType>({
     id: "",
     name: "",
@@ -33,6 +36,8 @@ function ContextProvider({ children }: PropsWithChildren) {
         setOpenCart,
         savedProduct,
         setSavedProduct,
+        addedToCart,
+        setaAddedToCart,
       }}
     >
       {children}
