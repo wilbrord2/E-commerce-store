@@ -45,7 +45,7 @@ const CartList = () => {
                     x
                   </span>
                   <span className="font-bold text-textTitlesColor pl-4">
-                    My Cart (2)
+                    My Cart ({cartList.length})
                   </span>
                 </div>
                 <div className=" flex items-center justify-center gap-2">
