@@ -58,7 +58,6 @@ export const getAllStores = async ({
   sortOrder
   }:storeParams): Promise<StoresType> => {
 
-  console.log("API:", name)
   const accessToken = cookies().get("accessToken")?.value;
   const api = `https://api.mark8.awesomity.rw/store?${name ? `name=${name}` : ""}&${description ? `description=${description}` : ""}&${address ? `address=${address}` : ""}&${createdFromDate ? `createdFromDate=${createdFromDate}` : ""}&${createdToDate ? `createdToDate=${createdToDate}` : ""}&${pageNumber? `pageNumber=${pageNumber}`:""}&${recordsPerPage?`recordsPerPage=${recordsPerPage}`:""}&${numberOfProducts ? `numberOfProducts=${numberOfProducts}` : ""}&${sortBy ? `sortBy=${sortBy}` : ""}&${sortOrder ? `sortOrder=${sortOrder}` : ""}`;
   

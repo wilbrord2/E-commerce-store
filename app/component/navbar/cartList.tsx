@@ -3,6 +3,7 @@ import { useAppContext } from "@/app/context/context";
 import React, { useState } from "react";
 import ButtonComponent from "../Button";
 import { Icon } from "@iconify/react";
+import Image from "next/image";
 import {
   DeleteOutlined,
   ExclamationCircleOutlined,
@@ -11,6 +12,7 @@ import {
   PlusOutlined,
 } from "@ant-design/icons";
 import { Button } from "antd";
+import { cartList } from "@/app/helpers/arrays";
 
 const CartList = () => {
   const { openCart, setOpenCart } = useAppContext();
@@ -21,24 +23,6 @@ const CartList = () => {
       setOpenCart(false);
     }
   };
-  const cartList = [
-    {
-      id: 1,
-      name: "Product 1",
-      price: "9,000",
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: "5,000",
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      price: "1,000",
-    },
- 
-  ];
 
   return (
     <>
@@ -86,19 +70,28 @@ const CartList = () => {
                 onFocus={() => setInputFocused(true)}
                 className="p-4"
               >
-                {cartList.map((item) => (
+                {cartList.map((item, index) => (
                   <div
                     key={item.id}
                     className="w-full flex items-center justify-between flex-wrap gap-4 mb-4 p-4 border rounded-md"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="p-2">{item.id}</span>
-                      <span className="w-20 h-20 block bg-[#F7F8FB] rounded-md"></span>
+                      <span className="p-2">{index + 1}</span>
+                      <div className="w-20 h-20 relative overflow-hidden">
+                        <Image
+                          src={item.image}
+                          fill
+                          alt="Product image"
+                          className="object-cover rounded-xl"
+                        ></Image>
+                      </div>
                       <div className="flex flex-col gap-2">
                         <span className="text-textTitlesColor font-bold">
                           {item.name}
                         </span>
-                        <span>{item.price.toLocaleString()} RWF</span>
+                        <span>
+                          {(item.price * totalNumber).toLocaleString()} RWF
+                        </span>
                       </div>
                     </div>
                     <div className=" max-sm:w-full flex items-center max-sm:justify-center gap-2 ">
@@ -112,7 +105,9 @@ const CartList = () => {
                         {totalNumber}
                       </div>
                       <Button
-                        onClick={() => setTotalNumber(totalNumber + 1)}
+                        onClick={() => {
+                          setTotalNumber(totalNumber + 1);
+                        }}
                         className="border rounded-md cursor-pointer"
                         icon={<PlusOutlined />}
                       ></Button>

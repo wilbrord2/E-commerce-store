@@ -1,6 +1,6 @@
 "use client";
 import { useAppContext } from "@/app/context/context";
-import { MysavedProduct } from "@/app/helpers/arrays";
+import { cartList, savedProduct } from "@/app/helpers/arrays";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button } from "antd";
@@ -19,7 +19,8 @@ interface props {
 const SingleProduct = (params: props) => {
   const { image, name, price, removeCart, productId } = params;
   const [saved, setSaved] = useState(false);
-  const { savedProduct, setSavedProduct, setaAddedToCart } = useAppContext();
+  const { setaAddedToCart } = useAppContext();
+ console.log(savedProduct)
   return (
     <div className="flex flex-col rounded-2xl border cursor-pointer">
       <Link href={`/dashboard/product/${productId}`}>
@@ -50,8 +51,17 @@ const SingleProduct = (params: props) => {
         </Link>
         <div className="inline-flex gap-2">
           {!removeCart && (
-            <Button onClick={()=> setaAddedToCart(true)}>
-              
+            <Button
+              onClick={() => {
+                setaAddedToCart(true);
+                cartList.push({
+                  name: name,
+                  image: image,
+                  price: price,
+                  id: productId,
+                });
+              }}
+            >
               <Icon
                 icon="hugeicons:shopping-cart-check-in-02"
                 width="15"
@@ -63,14 +73,13 @@ const SingleProduct = (params: props) => {
           <Button
             onClick={() => {
               setSaved((prev) => !prev);
-              setSavedProduct({
+              savedProduct.push({
                 name: name,
                 image: image,
                 price: price,
                 saved: saved,
                 id: productId,
               });
-              MysavedProduct.push(savedProduct);
             }}
             icon={
               saved ? (

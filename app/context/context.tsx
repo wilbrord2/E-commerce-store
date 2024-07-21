@@ -1,6 +1,6 @@
 "use client";
 import { PropsWithChildren, createContext, useContext, useState } from "react";
-import { SavedProductType } from "../types/savedProduct";
+import { CartType, SavedProductType } from "../helpers/arrays";
 
 interface ContextValue {
   openSearch: boolean;
@@ -9,8 +9,10 @@ interface ContextValue {
   setOpenCart: (arg: boolean) => void;
   addedToCart: boolean;
   setaAddedToCart: (arg: boolean) => void;
-  savedProduct: SavedProductType;
-  setSavedProduct: (arg: SavedProductType) => void;
+  saveProduct: SavedProductType;
+  setSaveProduct: (arg: SavedProductType) => void;
+  addToCart: CartType;
+  setAddToCart: (arg: CartType) => void;
 }
 
 const AppContext = createContext<ContextValue>({} as ContextValue);
@@ -19,11 +21,17 @@ function ContextProvider({ children }: PropsWithChildren) {
   const [openSearch, setOpenSearch] = useState(false);
   const [openCart, setOpenCart] = useState(false);
   const [addedToCart, setaAddedToCart] = useState(false);
-  const [savedProduct, setSavedProduct] = useState<SavedProductType>({
+  const [saveProduct, setSaveProduct] = useState<SavedProductType>({
     id: "",
     name: "",
     price: 0,
     saved: false,
+    image: "",
+  });
+  const [addToCart, setAddToCart] = useState<CartType>({
+    id: "",
+    name: "",
+    price: 0,
     image: "",
   });
 
@@ -34,10 +42,12 @@ function ContextProvider({ children }: PropsWithChildren) {
         setOpenSearch,
         openCart,
         setOpenCart,
-        savedProduct,
-        setSavedProduct,
+        saveProduct,
+        setSaveProduct,
         addedToCart,
         setaAddedToCart,
+        addToCart,
+        setAddToCart,
       }}
     >
       {children}
