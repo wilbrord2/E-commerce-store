@@ -17,7 +17,7 @@ const SingleProductDetails = async ({ params: { id } }: props) => {
   const product = await getProduct(id);
   const array = [1, 2, 3, 4];
   if (product.statusCode === 401) {
-    redirect("/signin");
+    redirect("/");
   }
   return (
     <section className="max-w-[2500px] w-full mx-auto flex flex-col gap-4 max-sm:px-2 pt-4 sm:gap-8 sm:px-12 sm:pt-8">

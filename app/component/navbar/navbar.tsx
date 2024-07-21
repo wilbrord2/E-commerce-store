@@ -80,7 +80,7 @@ const items: MenuProps["items"] = [
   },
   {
     label: (
-      <Link href={"/signin"}>
+      <Link href={"/"}>
         <div className="px-6 py-3 flex gap-4">
           <LogoutOutlined />
           <span className="text-textSubTitlesColor text-sm">Logout</span>

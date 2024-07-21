@@ -7,7 +7,7 @@ export default function middleware(req:NextRequest) {
   const protectedRoutes=['/dashboard']
 
   if (!token && protectedRoutes.includes(req.nextUrl.pathname)) {
-      return NextResponse.redirect(new URL('/signin', req.nextUrl));
+      return NextResponse.redirect(new URL('/', req.nextUrl));
   } 
 
   return NextResponse.next();

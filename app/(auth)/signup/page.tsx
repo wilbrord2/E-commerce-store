@@ -26,7 +26,7 @@ const Signup = () => {
           <ButtonComponent
             title="Login"
             color=""
-            link="/signin"
+            link="/"
             icon={<LoginOutlined className="text-textDefaultGreen font-bold" />}
           />
         </div>

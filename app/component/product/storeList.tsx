@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export const getServerSideProps = async () => {
   try {
-    const storesData = await getAllStores();
+    const storesData = await getAllStores({});
     return {
       stores: storesData,
       error: null,
@@ -22,7 +22,7 @@ export const getServerSideProps = async () => {
 const StoreList = async () => {
   const { stores } = await getServerSideProps();
   if (stores.statusCode === 401) {
-    redirect("/signin");
+    redirect("/");
   }
   return (
     <div className="hidden lg:block w-full xl:w-3/5 h-auto border rounded-xl">

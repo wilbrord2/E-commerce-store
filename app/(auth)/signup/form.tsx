@@ -35,7 +35,7 @@ const SignupForm = () => {
           placement: "topRight",
         });
       } else {
-        route.push("/signin");
+        route.push("/");
         notification.success({
           message: " Login",
           description: "You have succesfull logged in",

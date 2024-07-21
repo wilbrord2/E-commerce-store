@@ -24,7 +24,7 @@ export const getServerSideProps = async () => {
 const RecentProduct = async () => {
   const { product, error } = await getServerSideProps();
   if (product.statusCode === 401 || error) {
-    redirect("/signin");
+    redirect("/");
   }
 
   return (

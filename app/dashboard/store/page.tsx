@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 const Store = async () => {
   const stores = await getAllStores();
   if (stores.statusCode === 401) {
-    redirect("/signin");
+    redirect("/");
   }
   return (
     <main className="max-w-[2500px] w-full mx-auto flex flex-col gap-4 pt-4 sm:gap-8 sm:px-12 sm:pt-8">

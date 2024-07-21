@@ -1,9 +1,11 @@
 import React from "react";
-import Logo from "../../component/logo";
-import Title from "../../component/logo/title";
+
 import { ArrowRightOutlined } from "@ant-design/icons";
 import ButtonComponent from "@/app/component/Button";
-import SignInForm from "./form";
+import Logo from "./component/logo";
+import Title from "./component/logo/title";
+import SignInForm from "./(auth)/signin/form";
+
 
 const Signin = () => {
   return (

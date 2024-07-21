@@ -55,7 +55,7 @@ const ForgetPassword = () => {
           </Form.Item>
 
           <div className="mt-6 flex justify-between flex-wrap space-y-4 items-center">
-            <Link href={"/signin"}>
+            <Link href={"/"}>
               <span className="underline text-textTitlesColor font-bold cursor-pointer hover:opacity-60">
                 Login Instead
               </span>

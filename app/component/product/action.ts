@@ -31,18 +31,34 @@ export const getAllProducts=async(pageNumber:number,
       return product;
       
     }
-export const getAllStores = async (
-  pageNumber?: number,
-  recordsPerPage?: number,
-  name?: string,
-  address?: string,
-  description?: string,
-  createdFromDate?: string,
-  createdToDate?: string,
-  numberOfProducts?: number,
-  sortBy?: string,
-  sortOrder?: string
-  ): Promise<StoresType> => {
+
+interface storeParams{
+        pageNumber?: number,
+        recordsPerPage?: number,
+        name?: string,
+        address?: string,
+        description?: string,
+        createdFromDate?: string,
+        createdToDate?: string,
+        numberOfProducts?: number,
+        sortBy?: string,
+        sortOrder?: string
+        
+    }
+export const getAllStores = async ({
+  pageNumber,
+  recordsPerPage,
+  name,
+  address,
+  description,
+  createdFromDate,
+  createdToDate,
+  numberOfProducts,
+  sortBy,
+  sortOrder
+  }:storeParams): Promise<StoresType> => {
+
+  console.log("API:", name)
   const accessToken = cookies().get("accessToken")?.value;
   const api = `https://api.mark8.awesomity.rw/store?${name ? `name=${name}` : ""}&${description ? `description=${description}` : ""}&${address ? `address=${address}` : ""}&${createdFromDate ? `createdFromDate=${createdFromDate}` : ""}&${createdToDate ? `createdToDate=${createdToDate}` : ""}&${pageNumber? `pageNumber=${pageNumber}`:""}&${recordsPerPage?`recordsPerPage=${recordsPerPage}`:""}&${numberOfProducts ? `numberOfProducts=${numberOfProducts}` : ""}&${sortBy ? `sortBy=${sortBy}` : ""}&${sortOrder ? `sortOrder=${sortOrder}` : ""}`;
   
