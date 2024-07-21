@@ -19,6 +19,7 @@ import { Dropdown, MenuProps, Space } from "antd";
 import dynamic from "next/dynamic";
 import SearchIcon from "./searchIcon";
 import CartIcon from "./cartIcon";
+import { Logout } from "@/app/helpers/logout";
 
 const items: MenuProps["items"] = [
   {
@@ -80,7 +81,7 @@ const items: MenuProps["items"] = [
   },
   {
     label: (
-      <Link href={"/"}>
+      <Link onClick={()=>Logout()} href={"/"}>
         <div className="px-6 py-3 flex gap-4">
           <LogoutOutlined />
           <span className="text-textSubTitlesColor text-sm">Logout</span>
