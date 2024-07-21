@@ -7,6 +7,7 @@ import ButtonComponent from "@/app/component/Button";
 import { HeartOutlined, PhoneOutlined, StarOutlined } from "@ant-design/icons";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import CartButtons from "./cartButtons";
+import SingleProduct from "@/app/component/product/singleProduct";
 interface props {
   params: {
     id: string;
@@ -14,6 +15,7 @@ interface props {
 }
 const SingleProductDetails = async ({ params: { id } }: props) => {
   const product = await getProduct(id);
+  const array = [1, 2, 3, 4];
   if (product.statusCode === 401) {
     redirect("/signin");
   }
@@ -22,7 +24,7 @@ const SingleProductDetails = async ({ params: { id } }: props) => {
       <div></div>
       <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-4">
         <ImageContainer images={product.data?.thumbnail} />
-        <div className="w-full lg:w-[60%] 2xl:w-1/2 border rounded-2xl flex flex-col">
+        <div className="w-full lg:w-[60%]  border rounded-2xl flex flex-col">
           <div className="flex gap-2 justify-between max-lg:flex-wrap items-center py-4 px-8">
             <span className="text-lg font-bold">
               Product Details{" "}
@@ -98,8 +100,23 @@ const SingleProductDetails = async ({ params: { id } }: props) => {
           </div>
         </div>
       </div>
-      <div>
-        <span className="text-textTitlesColor text-2xl font-extrabold">You might also like</span>
+      <div className="flex flex-col gap-4">
+        <span className="text-textTitlesColor text-2xl font-extrabold">
+          You might also like
+        </span>
+        <div className="w-full flex items-center justify-evenly lg:justify-start flex-wrap gap-4">
+          {array.map((item) => (
+            <div key={item}>
+              <SingleProduct
+                removeCart={false}
+                productId={product.data.id}
+                image={product.data?.thumbnail[1]}
+                price={16000}
+                name={"Product 1"}
+              />
+            </div>
+          ))}
+        </div>
       </div>
       <ContactUs />
     </section>
