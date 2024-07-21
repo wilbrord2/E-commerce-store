@@ -7,7 +7,7 @@ import StoresPage from "./storePage";
 import { redirect } from "next/navigation";
 
 const Store = async () => {
-  const stores = await getAllStores();
+  const stores = await getAllStores({});
   if (stores.statusCode === 401) {
     redirect("/");
   }
