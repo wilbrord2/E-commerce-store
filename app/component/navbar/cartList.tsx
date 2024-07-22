@@ -1,6 +1,6 @@
 "use client";
 import { useAppContext } from "@/app/context/context";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonComponent from "../Button";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
@@ -18,11 +18,26 @@ const CartList = () => {
   const { openCart, setOpenCart } = useAppContext();
   const [inputFocused, setInputFocused] = useState(false);
   const [totalNumber, setTotalNumber] = useState(1);
+  const [updateCart, setUpdateCart] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
+
   const handleBlur = () => {
-    if (!inputFocused) {
+    if (cartList.length === 0 || inputFocused) {
       setOpenCart(false);
     }
   };
+
+  const handleDeletedItem = (index: number) => {
+    setUpdateCart(Math.random() * 10);
+    cartList.splice(index, 1);
+  };
+  useEffect(() => {
+    let sum = 0;
+    cartList.forEach((item) => {
+      sum = sum + item.price * totalNumber;
+    });
+    setTotalPrice(sum);
+  });
 
   return (
     <>
@@ -68,65 +83,67 @@ const CartList = () => {
               <div
                 onBlur={() => setInputFocused(false)}
                 onFocus={() => setInputFocused(true)}
-                className="p-4"
               >
-                {cartList.map((item, index) => (
-                  <div
-                    key={item.id}
-                    className="w-full flex items-center justify-between flex-wrap gap-4 mb-4 p-4 border rounded-md"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="p-2">{index + 1}</span>
-                      <div className="w-20 h-20 relative overflow-hidden">
-                        <Image
-                          src={item.image}
-                          fill
-                          alt="Product image"
-                          className="object-cover rounded-xl"
-                        ></Image>
+                <div key={updateCart} className="p-4">
+                  {cartList.map((item, index) => (
+                    <div
+                      key={index}
+                      className="w-full flex items-center justify-between flex-wrap gap-4 mb-4 p-4 border rounded-md"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="p-2">{index + 1}</span>
+                        <div className="w-20 h-20 relative overflow-hidden">
+                          <Image
+                            src={item.image}
+                            fill
+                            alt="Product image"
+                            className="object-cover rounded-xl"
+                          ></Image>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <span className="text-textTitlesColor font-bold">
+                            {item.name}
+                          </span>
+                          <span>
+                            {(item.price * totalNumber).toLocaleString()} RWF
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex flex-col gap-2">
-                        <span className="text-textTitlesColor font-bold">
-                          {item.name}
-                        </span>
-                        <span>
-                          {(item.price * totalNumber).toLocaleString()} RWF
-                        </span>
+                      <div className=" max-sm:w-full flex items-center max-sm:justify-center gap-2 ">
+                        <Button
+                          disabled={totalNumber <= 1 ? true : false}
+                          onClick={() => {
+                            setTotalNumber(totalNumber - 1);
+                          }}
+                          className="border rounded-md cursor-pointer"
+                          icon={<MinusOutlined />}
+                        ></Button>
+                        <div className="bg-[#F7F8FB] border rounded-md px-8 py-1">
+                          {totalNumber}
+                        </div>
+                        <Button
+                          onClick={() => {
+                            setTotalNumber(totalNumber + 1);
+                          }}
+                          className="border rounded-md cursor-pointer"
+                          icon={<PlusOutlined />}
+                        ></Button>
+                        <Button
+                          onClick={() => handleDeletedItem(index)}
+                          className="border rounded-md cursor-pointer"
+                          icon={<DeleteOutlined className="text-red-600" />}
+                        ></Button>
                       </div>
                     </div>
-                    <div className=" max-sm:w-full flex items-center max-sm:justify-center gap-2 ">
-                      <Button
-                        disabled={totalNumber <= 1 ? true : false}
-                        onClick={() => setTotalNumber(totalNumber - 1)}
-                        className="border rounded-md cursor-pointer"
-                        icon={<MinusOutlined />}
-                      ></Button>
-                      <div className="bg-[#F7F8FB] border rounded-md px-8 py-1">
-                        {totalNumber}
-                      </div>
-                      <Button
-                        onClick={() => {
-                          setTotalNumber(totalNumber + 1);
-                        }}
-                        className="border rounded-md cursor-pointer"
-                        icon={<PlusOutlined />}
-                      ></Button>
-                      <Button
-                      onClick={()=> {cartList.pop()}}
-                        className="border rounded-md cursor-pointer"
-                        icon={<DeleteOutlined className="text-red-600" />}
-                      ></Button>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
-
             <div className="border-t flex justify-between items-center p-4">
               <div>
                 <span className="text-xs">Total:</span>
                 <div className="text-textTitlesColor font-bold text-lg">
-                  36,000 Frw
+                  {totalPrice.toLocaleString()} Rwf
                 </div>
               </div>
               <ButtonComponent
