@@ -18,7 +18,7 @@ const SavedProduct = () => {
           <span className="p-8 rounded-lg border bg-gray-100">Save a Product</span>{" "}
         </div>
       ) : (
-        <div className="w-full flex items-center justify-evenly flex-wrap gap-4">
+        <div className="w-full flex items-center justify-around flex-wrap gap-4">
           {savedProduct.map((item) => (
             <div key={item.id}>
               <SavedSingleProduct
