@@ -1,9 +1,11 @@
+"use client"
 import ContactUs from "@/app/component/contactUs/contactUs";
 import { savedProduct } from "@/app/helpers/arrays";
 import React from "react";
 import SavedSingleProduct from "./savedSingleProduct";
 
 const SavedProduct = () => {
+  console.log({savedProduct})
   return (
     <section className="max-w-[2500px] w-full mx-auto flex flex-col gap-4 pt-4 sm:gap-8 sm:px-12 sm:pt-8">
       <div className="bg-[#F7F8FB] flex flex-col items-center justify-center gap-4 p-8 rounded-xl">
