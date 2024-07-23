@@ -3,19 +3,35 @@ import { ProductListType } from "@/app/types/productTypes";
 import { StoresType } from "@/app/types/storeTypes";
 import { cookies } from "next/headers";
 
-export const getAllProducts=async(pageNumber:number,
-  recordsPerPage:number,
-  name?: string, 
-  description?:string,
-  FromDate?:string,
-    ToDate?:string,
-    createdBy?:string,
-    categoryId?:string,
-    code?:string,
-    minUnitPrice?:number,
-    maxUnitPrice?:number,
-    sortBy?:string,
-    sortOrder?:string): Promise<ProductListType> => {
+interface productsParams{
+  pageNumber: number,
+  recordsPerPage: number,
+  name?: string,
+  description?: string,
+  FromDate?: string,
+  ToDate?: string,
+  createdBy?: string,
+  categoryId?: string,
+  code?: string,
+  minUnitPrice?: string,
+  maxUnitPrice?: string,
+  sortBy?: string,
+  sortOrder?: string
+  
+}
+export const getAllProducts=async({pageNumber,
+  recordsPerPage,
+  name, 
+  description,
+  FromDate,
+    ToDate,
+    createdBy,
+    categoryId,
+    code,
+    minUnitPrice,
+    maxUnitPrice,
+    sortBy,
+    sortOrder}:productsParams): Promise<ProductListType> => {
       
       const accessToken = cookies().get("accessToken")?.value;
       const api = `https://api.mark8.awesomity.rw/products?${name ? `name=${name}` : ""}&${description ? `description=${description}` : ""}&${FromDate?`createdFromDate=${FromDate}`:""}&${ToDate?`createdToDate=${ToDate}`:""}&${createdBy? `createdBy=${createdBy}`:""}&${categoryId?`categoryId=${categoryId}`:""}&${code?`code=${code}`:""}&pageNumber=${pageNumber}&recordsPerPage${recordsPerPage}&${minUnitPrice? `minUnitPrice=${minUnitPrice}`:""}&${maxUnitPrice? `maxUnitPrice=${maxUnitPrice}`:""}&${sortBy?`sortBy=${sortBy}`:""}&${sortOrder?`sortOrder=${sortOrder}`:""}`;

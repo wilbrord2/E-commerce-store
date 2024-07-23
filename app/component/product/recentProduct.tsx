@@ -1,5 +1,5 @@
 "use server";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "antd";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import SingleProduct from "./singleProduct";
@@ -9,30 +9,20 @@ import StoreList from "./storeList";
 import ButtonComponent from "../Button";
 import { DownOutlined } from "@ant-design/icons";
 
-export const getServerSideProps = async () => {
-  try {
-    const productData = await getAllProducts(1, 10);
-    return {
-      product: productData,
-      error: null,
-    };
-  } catch (error: any) {
-    throw new error();
-  }
-};
-
 const RecentProduct = async () => {
-  const { product, error } = await getServerSideProps();
-  if (product.statusCode === 401 || error) {
+
+  const product=await getAllProducts({pageNumber:1, recordsPerPage:10})
+  
+  if (product?.statusCode === 401 ) {
     redirect("/");
   }
-
+ 
   return (
     <section className="p-4 w-full">
       <div className="w-full flex items-center justify-between mb-8">
         <span className="font-bold text-textPrimaryColor">
           {" "}
-          Recent Products ({product.data?.pagination.totalRecords || 0})
+          Recent Products ({product?.data?.pagination.totalRecords || 0})
         </span>
         <span className="inline-flex gap-2">
           <Button>
@@ -56,7 +46,7 @@ const RecentProduct = async () => {
       <div className="w-full flex items-start gap-2">
         <div>
           <div className="w-full mb-4 flex items-center justify-center md:justify-evenly gap-4 flex-wrap">
-            {product.data?.products.map((product) => (
+            {product?.data?.products.map((product) => (
               <div key={product.id}>
                 <SingleProduct
                   productId={product.id}

@@ -8,6 +8,7 @@ import { HeartOutlined, PhoneOutlined, StarOutlined } from "@ant-design/icons";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import CartButtons from "./cartButtons";
 import SingleProduct from "@/app/component/product/singleProduct";
+import SaveProductBtn from "./saveProductBtn";
 interface props {
   params: {
     id: string;
@@ -32,20 +33,7 @@ const SingleProductDetails = async ({ params: { id } }: props) => {
                 IN STOCK
               </span>{" "}
             </span>
-            <span className="inline-flex gap-2 items-center">
-              <ButtonComponent
-                title={"Save"}
-                color={""}
-                iconPosition="left"
-                icon={<HeartOutlined className="text-textDefaultGreen" />}
-              />
-              <Icon
-                icon="charm:menu-kebab"
-                width="20"
-                height="20"
-                className="text-textTitlesColor"
-              />
-            </span>
+            <SaveProductBtn name={product.data.name} image={product.data?.thumbnail[0]} price={product.data.unitPrice} productId={product.data.id} />
           </div>
           <div className="border-y p-8 flex flex-col gap-4">
             <div className="flex flex-col gap-2 ">
@@ -117,7 +105,7 @@ const SingleProductDetails = async ({ params: { id } }: props) => {
                 productId={product.data.id}
                 image={product.data?.thumbnail[1]}
                 price={16000}
-                name={"Product 1"}
+                name={product.data.name}
               />
             </div>
           ))}

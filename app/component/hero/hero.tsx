@@ -3,16 +3,12 @@ import { Input } from "antd";
 import { Icon } from "@iconify/react";
 import React from "react";
 import FilterOptions from "./filterOptions";
+import { getAllCategories } from "./action";
 
-const HeroSection = ({
-  background,
-  store,
-  totalItems,
-}: {
-  background?: string;
-  store: boolean;
-  totalItems: number;
-}) => {
+const HeroSection =async ({background,store,totalItems,}: {background?: string;store: boolean;totalItems: number;}) => {
+
+  const categories = await getAllCategories({pageNumber:1, recordsPerPage:10})
+  
   return (
     <section
       className={`${
@@ -54,7 +50,7 @@ const HeroSection = ({
           }
         />
       </div>
-      <FilterOptions store={store} />
+      <FilterOptions store={store} categories={categories.data.categories}/>
     </section>
   );
 };

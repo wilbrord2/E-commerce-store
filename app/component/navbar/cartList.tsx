@@ -37,7 +37,7 @@ const CartList = () => {
       sum = sum + item.price * totalNumber;
     });
     setTotalPrice(sum);
-  });
+  },[totalNumber]);
 
   return (
     <>
